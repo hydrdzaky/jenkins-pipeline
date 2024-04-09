@@ -13,6 +13,7 @@ pipeline{
         stage('build'){
             steps{
             echo 'build 1'
+            sleep(5)
             echo 'build 2'
             echo 'build 3'
             }
@@ -20,10 +21,14 @@ pipeline{
         stage('test'){
             steps{
             echo 'test'
+            sleep(5)
+            echo 'test'
             }
         }
         stage('deploy'){
             steps{
+            echo 'deploy'
+            sleep(5)
             echo 'deploy'
             }
         }
