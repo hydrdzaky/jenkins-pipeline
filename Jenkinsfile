@@ -12,23 +12,20 @@ pipeline{
         }
         stage('build'){
             steps{
-            echo 'build 1'
-            sleep(5)
-            echo 'build 2'
-            echo 'build 3'
+            echo 'start build'
+            sh('./mvnw clean compile test-compile')
+            echo 'finish build'
             }
         }
         stage('test'){
             steps{
-            echo 'test'
-            sleep(5)
-            echo 'test'
+            echo 'start test'
+            sh('./mvnw test')
+            echo 'finish test'
             }
         }
         stage('deploy'){
             steps{
-            echo 'deploy'
-            sleep(5)
             echo 'deploy'
             }
         }
