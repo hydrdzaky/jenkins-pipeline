@@ -11,4 +11,18 @@ pipeline{
             }
         }
     }
+    post
+    {
+        always{
+            echo 'Goodbye Haydar!'
+        }
+        success{
+            echo 'Success!'
+        }
+        failure{
+            echo 'Failure!'
+        }
+    }
+    }
+}
 }
