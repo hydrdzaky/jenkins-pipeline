@@ -23,6 +23,4 @@ pipeline{
             echo 'Failure!'
         }
     }
-    }
-}
 }
