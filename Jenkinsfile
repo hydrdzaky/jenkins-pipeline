@@ -1,18 +1,24 @@
 pipeline{
-    agent {
-        node{
-            label 'ubuntu-1604 && java-11'
-        }
-    }
+    agent none
     stages{
         stage('hello'){
+            agent {
+                node{
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
             steps{
                 echo 'Hello Haydar!'
             }
         }
         stage('build'){
+            agent {
+                node{
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
             steps{
-                script{
+                script{ //script
                     for(int i=0;i<5;i++){
                         echo("scripy ${i}")
                     }
@@ -23,8 +29,14 @@ pipeline{
             }
         }
         stage('test'){
+            agent {
+                node{
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
             steps{
-                script{
+                
+                script{ //utility steps
                     def data =[
                         "firstName" : "Haydar",
                         "lastName" : "Dzaky"
@@ -37,6 +49,11 @@ pipeline{
             }
         }
         stage('deploy'){
+            agent {
+                node{
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
             steps{
             echo 'deploy'
             }
