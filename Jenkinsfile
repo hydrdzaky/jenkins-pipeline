@@ -12,6 +12,11 @@ pipeline{
         }
         stage('build'){
             steps{
+                script{
+                    for(int i=0;i<5;i++){
+                        echo("scripy ${i}")
+                    }
+                }
             echo 'start build'
             sh('./mvnw clean compile test-compile')
             echo 'finish build'
