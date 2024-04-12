@@ -24,6 +24,13 @@ pipeline{
         }
         stage('test'){
             steps{
+                script{
+                    def data =[
+                        "firstName" : "Haydar",
+                        "lastName" : "Dzaky"
+                    ]
+                    writeJSON(file:"data.json", json:data)
+                }
             echo 'start test'
             sh('./mvnw test')
             echo 'finish test'
