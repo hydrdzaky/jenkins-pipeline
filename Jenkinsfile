@@ -28,7 +28,7 @@ pipeline{
                 echo("email : ${EMAIL}")
                 echo("app user : ${APP_USR}")
                 echo("app password : ${APP_PSW}")
-                sh('echo "app password :$APP_PSW" > password.txt' )
+                sh('echo "app password :$APP_PSW" > "password.txt"' )
                 
                 //variable env
                 echo ("start job : ${env.JOB_NAME}")
