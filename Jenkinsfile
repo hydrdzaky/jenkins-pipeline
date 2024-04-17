@@ -1,22 +1,16 @@
 pipeline{
-    agent none
+    agent {
+        node{
+            label 'ubuntu-1604 && java-11'
+        }
+    }
     stages{
         stage('hello'){
-            agent {
-                node{ //agent perstage
-                    label 'ubuntu-1604 && java-11'
-                }
-            }
             steps{
                 echo 'Hello Haydar!'
             }
         }
         stage('build'){
-            agent {
-                node{ //agent perstage
-                    label 'ubuntu-1604 && java-11'
-                }
-            }
             steps{
                 script{ //script
                     for(int i=0;i<5;i++){
@@ -29,11 +23,6 @@ pipeline{
             }
         }
         stage('test'){
-            agent {
-                node{ //agent perstage
-                    label 'ubuntu-1604 && java-11'
-                }
-            }
             steps{
                 
                 script{ //utility steps
@@ -49,11 +38,6 @@ pipeline{
             }
         }
         stage('deploy'){
-            agent {
-                node{ //agent perstage
-                    label 'ubuntu-1604 && java-11'
-                }
-            }
             steps{
             echo 'deploy'
             }
