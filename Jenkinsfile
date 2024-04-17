@@ -1,4 +1,9 @@
 pipeline{
+    environment{
+        AUTHOR = "Haydar Dzaky"
+        EMAIL = "haydar.dzaky@gmail.com"
+        APP = credentials("id-haydar")
+    }
     agent none
     stages{
         stage('hello'){
@@ -17,7 +22,13 @@ pipeline{
                     label 'ubuntu-1604 && java-11'
                 }
             }
-            steps{
+            steps{ 
+                echo("author : ${AUTHOR}")
+                echo("email : ${EMAIL}")
+                echo("app user : ${APP_USR}")
+                echo("app password : ${APP_PSW}")
+                
+                //variable env
                 echo ("start job : ${env.JOB_NAME}")
                 echo ("start job : ${env.BUILD_NUMBER}")
                 echo ("start job : ${env.BRANCH_NAME}")
