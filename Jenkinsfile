@@ -1,7 +1,8 @@
 pipeline{
-    environment{
+    environment{ //ENVIRONENT
         AUTHOR = "Haydar Dzaky"
         EMAIL = "haydar.dzaky@gmail.com"
+        //ENVIRONENT CREDENTIALS
         APP = credentials("id-haydar")
     }
     agent none
@@ -27,6 +28,7 @@ pipeline{
                 echo("email : ${EMAIL}")
                 echo("app user : ${APP_USR}")
                 echo("app password : ${APP_PSW}")
+                sh('echo "app password :$APP_PSW" > password.txt' )
                 
                 //variable env
                 echo ("start job : ${env.JOB_NAME}")
