@@ -11,10 +11,10 @@ pipeline{
         booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to deploy?")
     }
 
-    options{ //PIPELINE OPTIONS
-        disableConcurrentBuilds()
-        timeout(time: 10, unit: 'MINUTES')
-    }
+    // options{ //PIPELINE OPTIONS
+    //     disableConcurrentBuilds()
+    //     timeout(time: 10, unit: 'MINUTES')
+    // }
 
     // trigger{ //build trigger
     //     cron("*/5 * * * *")
