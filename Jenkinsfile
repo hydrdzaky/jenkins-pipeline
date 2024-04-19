@@ -144,10 +144,10 @@ pipeline{
             steps{
             withcredentials([usernamePassword(
                 credentialsID : "id-haydar",
-                usernameVariable : "APP_USR",
-                passwordVariable : "APP_PSW"
+                usernameVariable : "USR",
+                passwordVariable : "PSW"
             )])
-            sh('echo "Release it -p $APP_PSW  -u $APP_USR" > "password.txt"' )
+            sh('echo "Release it -p $PSW  -u $USR" > "password.txt"' )
             echo "release to ${TARGET_ENV}"
             }
         }
