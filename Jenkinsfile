@@ -145,11 +145,11 @@ pipeline{
             }
             steps{
             withCredentials([usernamePassword(
-                credentialsID : "id-haydar",
+                credentialsId : "id-haydar",
                 usernameVariable : "USER",
                 passwordVariable : "PASSWORD"
             )]){
-                     sh('echo "Release it -p $PASSWORD  -u $USER" > "password2.txt"' )
+                     sh('echo "Release it -p $PASSWORD  -u $USER" > "password2.txt"')
                 }
             }
         }
