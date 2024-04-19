@@ -5,6 +5,12 @@ pipeline{
         //ENVIRONENT CREDENTIALS
         APP = credentials("id-haydar")
     }
+
+    options{
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
     agent none
     stages{
         stage('hello'){
