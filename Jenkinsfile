@@ -88,7 +88,7 @@ pipeline{
             }
         }
         stage('deploy'){
-            input{
+            input{ //input
                 message "can we deploy?"
                 ok "yes"
                 submitter "haydar"
@@ -102,6 +102,17 @@ pipeline{
             }
             steps{
             echo "deploy to ${TARGET_ENV}"
+            }
+        }
+        stage('release'){
+            when(params.DEPLOY == true) //conditional when parameter
+            agent {
+                node{ //agent perstage
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
+            steps{
+            echo ("release it")
             }
         }
         stage("parameter"){
