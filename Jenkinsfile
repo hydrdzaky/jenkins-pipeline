@@ -90,10 +90,10 @@ pipeline{
         stage('deploy'){
             input{
                 message "can we deploy?"
-                ok "yes."
+                ok "yes"
                 submitter "haydar"
                 parameters{
-                    choice(name: 'TARGET_ENV', choice: ['DEV', 'QA','PROD'], description:'we will deploy to?')}
+                    choice(name: 'TARGET_ENV', choices: ['DEV', 'QA','PROD'], description:'we will deploy to?')}
             }
             agent {
                 node{ //agent perstage
