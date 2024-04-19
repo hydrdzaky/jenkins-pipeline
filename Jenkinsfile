@@ -16,6 +16,11 @@ pipeline{
         timeout(time: 10, unit: 'MINUTES')
     }
 
+    trigger{
+        githubPush()
+        cron("*/5 * * * *")
+    }
+
     agent none
     stages{
         stage('hello'){
@@ -34,7 +39,7 @@ pipeline{
                     label 'ubuntu-1604 && java-11'
                 }
             }
-            steps{ 
+            steps{
                 echo("author : ${AUTHOR}")
                 echo("email : ${EMAIL}")
                 echo("app user : ${APP_USR}")
@@ -60,7 +65,7 @@ pipeline{
                     }
                 }
             echo 'start build'
-            sh('./mvnw clean compile test-compile')
+            sh('./mvnw clean compile test-compile') //command
             echo 'finish build'
             }
         }
@@ -70,9 +75,8 @@ pipeline{
                     label 'ubuntu-1604 && java-11'
                 }
             }
-            steps{
-                
-                script{ //utility steps
+            steps{ //utility steps
+                script{
                     def data =[
                         "firstName" : "Haydar",
                         "lastName" : "Dzaky"
@@ -107,8 +111,7 @@ pipeline{
             }
         }
     }
-    post
-    {
+    post{//post actions
         always{
             echo 'Goodbye Haydar!'
         }
