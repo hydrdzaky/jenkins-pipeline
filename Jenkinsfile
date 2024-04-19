@@ -105,7 +105,11 @@ pipeline{
             }
         }
         stage('release'){
-            when(params.DEPLOY == true) //conditional when parameter
+            when{
+                expression{
+                    return params.DEPLOY
+                }
+            } //conditional when parameter
             agent {
                 node{ //agent perstage
                     label 'ubuntu-1604 && java-11'
