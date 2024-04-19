@@ -34,21 +34,20 @@ pipeline{
                         values 'java-8', 'java-11', 'java-17'
                     }
                 }
-            }
-            stages{
-                stage("os setup"){
-                    agent {
-                        node{ //agent perstage
-                            label 'ubuntu-1604 && java-11'
+                stages{
+                    stage("os setup"){
+                        agent {
+                            node{ //agent perstage
+                                label 'ubuntu-1604 && java-11'
+                            }
                         }
-                    }
-                    steps{
-                        echo ("setup ${OS} and ${JAVA}") 
+                        steps{
+                            echo ("setup ${OS} and ${JAVA}") 
+                        }
                     }
                 }
             }
         } 
-
         stage('hello'){
             agent {
                 node{ //agent perstage
