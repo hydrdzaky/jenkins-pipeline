@@ -5,7 +5,7 @@ pipeline{
         APP = credentials("id-haydar") //CREDENTIALS
     }
 
-    parameters{
+    parameters{ //PIPELINE PARAMETERS
         string(name: "NAME", defaultValue: "Guest", description: "what is your name?")
         text(name: "DESCRIPTION", defaultValue: "Guest", description: "tell me about you?")
         booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to deploy?")
@@ -28,7 +28,7 @@ pipeline{
                 echo 'Hello Haydar!'
             }
         }
-        stage('prepare'){
+        stage('prepare'){ 
             agent {
                 node{ //agent perstage
                     label 'ubuntu-1604 && java-11'
@@ -100,7 +100,7 @@ pipeline{
                     label 'ubuntu-1604 && java-11'
                 }
             }
-            steps{
+            steps{ //parameter
                 echo "name : ${params.NAME}"
                 echo "description : ${params.DESCRIPTION}"
                 echo "deploy : ${params.DEPLOY}"
