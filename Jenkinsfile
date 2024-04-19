@@ -146,9 +146,9 @@ pipeline{
                 credentialsID : "id-haydar",
                 usernameVariable : "USR",
                 passwordVariable : "PSW"
-            )])
-            sh('echo "Release it -p $PSW  -u $USR" > "password.txt"' )
-            echo "release to ${TARGET_ENV}"
+            )]){
+                     sh('echo "Release it -p $PSW  -u $USR" > "password.txt"' )
+                }
             }
         }
         stage("parameter"){
