@@ -132,28 +132,27 @@ pipeline{
             echo "deploy to ${TARGET_ENV}"
             }
         }
-            stage("Release") {
-      when {
-        expression {
-          return params.DEPLOY
+        stage('release'){
+            when{
+                expression{
+                    return params.DEPLOY
+                }
+            }
+            agent {
+                node{ //agent perstage
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
+            steps{
+            withCredentials([usernamePassword(
+                credentialsID : "id-haydar",
+                usernameVariable : "USER",
+                passwordVariable : "PASSWORD"
+            )]){
+                     sh('echo "Release it -p $PASSWORD  -u $USER" > "password2.txt"' )
+                }
+            }
         }
-      }
-      agent {
-        node {
-            label 'ubuntu-1604 && java-11'
-        }
-      }
-      steps {
-        withCredentials([usernamePassword(
-            credentialsId: "id-haydar",
-            usernameVariable: "USER",
-            passwordVariable: "PASSWORD"
-        )]) {
-          sh('echo "Release it with -u $USER -p $PASSWORD" > "release.txt"')
-        }
-      }
-    }
-
         stage("parameter"){
             agent {
                 node{ //agent perstage
