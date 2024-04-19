@@ -2,7 +2,6 @@ pipeline{
     environment{ //PIPELINE ENVIRONMENT VARIABLES
         AUTHOR = "Haydar Dzaky"
         EMAIL = "haydar.dzaky@gmail.com"
-        APP = credentials("id-haydar") //CREDENTIALS
     }
 
     parameters{ //PIPELINE PARAMETERS
@@ -59,6 +58,9 @@ pipeline{
             }
         }
         stage('prepare'){ 
+        environment{ //PIPELINE ENVIRONMENT VARIABLES
+            APP = credentials("id-haydar") //CREDENTIALS
+        }
             agent {
                 node{ //agent perstage
                     label 'ubuntu-1604 && java-11'
