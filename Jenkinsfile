@@ -1,12 +1,17 @@
 pipeline{
-    environment{ //ENVIRONENT
+    environment{ //PIPELINE ENVIRONMENT VARIABLES
         AUTHOR = "Haydar Dzaky"
         EMAIL = "haydar.dzaky@gmail.com"
-        //ENVIRONENT CREDENTIALS
-        APP = credentials("id-haydar")
+        APP = credentials("id-haydar") //CREDENTIALS
     }
 
-    options{
+    parameters{
+        string(name: "NAME", defaultValue: "Guest", description: "what is your name?")
+        text(name: "DESCRIPTION", defaultValue: "Guest", description: "tell me about you?")
+        booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to deploy?")
+    }
+
+    options{ //PIPELINE OPTIONS
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
     }
@@ -87,6 +92,18 @@ pipeline{
             }
             steps{
             echo 'deploy'
+            }
+        }
+        stage("parameter"){
+            agent {
+                node{ //agent perstage
+                    label 'ubuntu-1604 && java-11'
+                }
+            }
+            steps{
+                echo "name : ${params.NAME}"
+                echo "description : ${params.DESCRIPTION}"
+                echo "deploy : ${params.DEPLOY}"
             }
         }
     }
