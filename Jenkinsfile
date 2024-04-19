@@ -142,7 +142,7 @@ pipeline{
                 }
             }
             steps{
-            withcredentials([usernamePassword(
+            withCredentials([usernamePassword(
                 credentialsID : "id-haydar",
                 usernameVariable : "USR",
                 passwordVariable : "PSW"
