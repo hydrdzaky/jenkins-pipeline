@@ -16,10 +16,9 @@ pipeline{
         timeout(time: 10, unit: 'MINUTES')
     }
 
-    trigger{
-        githubPush()
-        cron("*/5 * * * *")
-    }
+    // trigger{ //build trigger
+    //     cron("*/5 * * * *")
+    // }
 
     agent none
     stages{
@@ -89,13 +88,20 @@ pipeline{
             }
         }
         stage('deploy'){
+            input{
+                message "can we deploy?"
+                ok "yes."
+                submitter "haydar"
+                parameters{
+                    choice(name: 'TARGET_ENV', choice: ['DEV', 'QA','PROD'], description:'we will deploy to?')}
+            }
             agent {
                 node{ //agent perstage
                     label 'ubuntu-1604 && java-11'
                 }
             }
             steps{
-            echo 'deploy'
+            echo "deploy to ${TARGET_ENV}"
             }
         }
         stage("parameter"){
