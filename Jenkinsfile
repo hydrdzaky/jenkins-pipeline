@@ -22,6 +22,32 @@ pipeline{
 
     agent none
     stages{
+        stage("os setup"){
+            matrix{
+                axes{
+                    axis{
+                        name 'OS'
+                        values 'ubuntu-1604', 'ubuntu-1804', 'ubuntu-2004'
+                    }
+                    axis{
+                        name 'JAVA'
+                        values 'java-8', 'java-11', 'java-17'
+                    }
+                }
+            }
+        } 
+        stages{
+             stage("os setup"){
+                agent {
+                    node{ //agent perstage
+                        label 'ubuntu-1604 && java-11'
+                    }
+                }
+                steps{
+                    echo ("setup ${OS} and ${JAVA}") 
+                }
+            }
+        }
         stage('hello'){
             agent {
                 node{ //agent perstage
@@ -109,7 +135,7 @@ pipeline{
                 expression{
                     return params.DEPLOY
                 }
-            } //conditional when parameter
+            }
             agent {
                 node{ //agent perstage
                     label 'ubuntu-1604 && java-11'
